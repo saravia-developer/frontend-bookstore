@@ -1,0 +1,35 @@
+<mat-divider></mat-divider>
+<mat-card *ngIf="item">
+  <mat-card-content>
+    <img [src]="item.image" [alt]="'image-' + item.name" />
+    <div>
+      <h4>{{ item.name }}</h4>
+      <p>Precio: ${{ item.current_price }}</p>
+      <mat-card-actions>
+        <h5>Cantidad:</h5>
+        <div>
+          <button
+            mat-fab
+            color="primary"
+            type="button"
+            (click)="decrementQuantity()"
+          >
+            -
+          </button>
+          <input type="number" min="0" [value]="quantity" />
+          <button
+            mat-fab
+            color="primary"
+            type="button"
+            (click)="incrementQuantity()"
+          >
+            +
+          </button>
+        </div>
+      </mat-card-actions>
+      <button mat-raised-button color="warn" (click)="deleteProduct()">Eliminar</button>
+    </div>
+    <!--  -->
+  </mat-card-content>
+</mat-card>
+<mat-divider></mat-divider>

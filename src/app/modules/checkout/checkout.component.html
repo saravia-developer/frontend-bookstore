@@ -1,0 +1,99 @@
+<form [formGroup]="formCheckout" style="display: flex; flex-direction: column; width: max(270px, 85%); margin: auto" (ngSubmit)="onSubmit()">
+  <h2>Checkout</h2>
+  <mat-form-field>
+    <mat-label for="firstname">Nombre(s):</mat-label>
+    <input
+      matInput
+      id="firstname"
+      formControlName="firstname"
+      placeholder="ingresé su nombre"
+    />
+
+    <mat-error *ngIf="formCheckout.get('firstname')?.errors?.['required']">
+      First Name is required
+    </mat-error>
+    <mat-error *ngIf="formCheckout.get('firstname')?.errors?.['minlength']">
+      First Name must be at least 2 characters long
+    </mat-error>
+    <mat-error *ngIf="formCheckout.get('firstname')?.errors?.['maxlength']">
+      First Name cannot be more than 40 characters long
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label for="lastname">Apellido(s):</mat-label>
+    <input matInput id="lastname" formControlName="lastname" />
+
+    <mat-error *ngIf="formCheckout.get('lastname')?.errors?.['required']">
+      Last Name is required
+    </mat-error>
+    <mat-error *ngIf="formCheckout.get('lastname')?.errors?.['minlength']">
+      Last Name must be at least 2 characters long
+    </mat-error>
+    <mat-error *ngIf="formCheckout.get('lastname')?.errors?.['maxlength']">
+      Last Name cannot be more than 40 characters long
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label for="email">Email:</mat-label>
+    <input matInput id="email" formControlName="email" />
+
+    <mat-error *ngIf="formCheckout.get('email')?.errors?.['required']">
+      Email is required
+    </mat-error>
+    <mat-error *ngIf="formCheckout.get('email')?.errors?.['email']">
+      Invalid email format
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label for="phone">Celular:</mat-label>
+    <input matInput id="phone" formControlName="phone" type="number" />
+
+    <mat-error *ngIf="formCheckout.get('phone')?.errors?.['required']">
+      Phone is required
+    </mat-error>
+    <mat-error *ngIf="formCheckout.get('phone')?.errors?.['maxlength']">
+      Phone cannot be more than 9 characters long
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label for="typeDocument">Type of Document:</mat-label>
+
+    <mat-select formControlName="typeDocument">
+      <mat-option *ngFor="let typeDocument of typeDocuments" [value]="typeDocument.type_document_id">
+        {{typeDocument.type_document}}
+      </mat-option>
+    </mat-select>
+
+    <mat-error *ngIf="formCheckout.get('typeDocument')?.errors?.['required']">
+      Type of Document is required
+    </mat-error>
+    <mat-error *ngIf="formCheckout.get('typeDocument')?.errors?.['maxlength']">
+      Type of Document cannot be more than 2 characters long
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label for="numberDocument">Number of Document:</mat-label>
+    <input
+      matInput
+      id="numberDocument"
+      formControlName="numberDocument"
+      type="number"
+    />
+
+    <mat-error *ngIf="formCheckout.get('numberDocument')?.errors?.['required']">
+      Number of Document is required
+    </mat-error>
+    <mat-error
+      *ngIf="formCheckout.get('numberDocument')?.errors?.['minlength']"
+    >
+      Number of Document must be at least 20 characters long
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button type="submit" [disabled]="formCheckout.invalid" color="outline">Submit</button>
+</form>

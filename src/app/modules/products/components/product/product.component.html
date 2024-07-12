@@ -1,0 +1,15 @@
+<mat-card appearance="outlined" class="mat-card-product">
+  <img
+    mat-card-image
+    [src]="productData.image"
+    [alt]="'image-' + productData.name"
+  />
+  <mat-card-content>
+    <span>isbn: {{ productData.isbn }}</span>
+    <h3>{{ productData.name }}</h3>
+    <span>${{ productData.current_price }}</span>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="button" (click)="addProductToCart(productData)">Añadir al Carrito</button>
+    </mat-card-actions>
+  </mat-card-content>
+</mat-card>
